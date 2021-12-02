@@ -1,4 +1,3 @@
-
 def day2pt1():
 
 	with open('input.txt', 'r') as f:
@@ -36,8 +35,6 @@ def day2pt2():
 				aim -= int(c[1])
 
 	return depth * x
-
-
 
 
 print(day2pt1())

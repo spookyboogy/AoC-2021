@@ -1,8 +1,5 @@
 def day1pt1():
 
-	depths = [int(i) for i in open("input.txt", 'r').read().splitlines()]
-def day1pt1():
-
 	D = [int(i) for i in open('input.txt', 'r').read().splitlines()]
 	return sum([D[i-1] < D[i] for i in range(1, len(D))])
 	

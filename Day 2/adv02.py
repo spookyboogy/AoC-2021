@@ -10,7 +10,6 @@ def day2pt1(course):
 				depth += int(c[1])
 			else:
 				depth -= int(c[1])
-
 	return depth * x
 
 
@@ -27,7 +26,6 @@ def day2pt2(course):
 				aim += int(c[1])
 			else:
 				aim -= int(c[1])
-
 	return depth * x
 
 

@@ -10,14 +10,10 @@ def day4pt1():
 		seq = [int(i) for i in f[0].split(',')]
 		boards = [i.split('\n\n') for i in f[1:]]
 	
-	# Make each board into a 1d list of numbers
 	boards = [[int(i) for i in b[0].replace('\n',' ').split()] for b in boards]
-	# While keeping 1d boards, add board represented as rows
 	boards = [[b, [b[i:i+5] for i in range(0, 25, 5)]] for b in boards]
-	# Add board represented as columns to list of rows
 	for board in boards:
 		board[1] += [[row[i] for row in board[1]] for i in range(5)] 
-	# Change the rows and columns from lists to sets
 	boards = [[b[0],[set(i) for i in b[1]]] for b in boards]
 	
 	n = 5

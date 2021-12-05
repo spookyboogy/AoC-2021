@@ -1,7 +1,7 @@
 def day3pt1(report):
 
 	rlen = len(report) 
-	bits = min(list(set(len(i) for i in report)))
+	bits = min(set(len(i) for i in report))
 	cols = [[int(row[col]) for row in report] for col in range(bits)]
 	gam = ''.join(str(int(sum(col) > (rlen / 2) - 1)) for col in cols)
 	eps = ''.join(str(int(sum(col) < rlen / 2)) for col in cols)

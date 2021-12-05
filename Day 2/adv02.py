@@ -1,7 +1,4 @@
-def day2pt1():
-
-	with open('input.txt', 'r') as f:
-		course = [i.split() for i in f.read().splitlines()]
+def day2pt1(course):
 
 	depth, x = 0, 0
 
@@ -17,10 +14,7 @@ def day2pt1():
 	return depth * x
 
 
-def day2pt2():
-
-	with open('input.txt', 'r') as f:
-		course = [i.split() for i in f.read().splitlines()]
+def day2pt2(course):
 
 	aim, depth, x = 0, 0, 0
 
@@ -37,5 +31,8 @@ def day2pt2():
 	return depth * x
 
 
-print(day2pt1())
-print(day2pt2())
+with open('input.txt', 'r') as f:
+		course = [i.split() for i in f.read().splitlines()]
+
+print(day2pt1(course))
+print(day2pt2(course))

@@ -1,22 +1,17 @@
-def day3pt1():
+def day3pt1(report):
 
-	with open('input.txt', 'r') as f:
-		report = f.read().splitlines()
-		rlen = len(report)
-		bits = min(list(set(len(i) for i in report)))
-
+	rlen = len(report) 
+	bits = min(list(set(len(i) for i in report)))
 	cols = [[int(row[col]) for row in report] for col in range(bits)]
-	gam = int(''.join(str(int(sum(col) > (rlen / 2) - 1)) for col in cols), 2)
-	eps = int(''.join(str(int(sum(col) < rlen / 2)) for col in cols), 2)
+	gam = ''.join(str(int(sum(col) > (rlen / 2) - 1)) for col in cols)
+	eps = ''.join(str(int(sum(col) < rlen / 2)) for col in cols)
 
-	return gam * eps
+	return int(gam, 2) * int(eps, 2)
 
 
-def day3pt2():
+def day3pt2(report):
 
-	with open('input.txt', 'r') as f:
-		report = f.read().splitlines()
-		oxy, co2 = report, report
+	oxy, co2 = report, report
 
 	pos = 0
 	while len(oxy) > 1:
@@ -24,7 +19,7 @@ def day3pt2():
 		crit = str(int(sum(cols) >= len(oxy) / 2))
 		oxy = [n for n in oxy if n[pos] == crit]
 		pos += 1
-		
+	
 	pos = 0
 	while len(co2) > 1:
 		cols = [int(row[pos]) for row in co2]
@@ -35,5 +30,8 @@ def day3pt2():
 	return int(oxy[0], 2) * int(co2[0], 2)
 	
 
-print(day3pt1())
-print(day3pt2())
+with open('input.txt', 'r') as f:
+		report = f.read().splitlines()		
+
+print(day3pt1(report))
+print(day3pt2(report))

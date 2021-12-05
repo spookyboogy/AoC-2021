@@ -1,15 +1,16 @@
-def day1pt1():
+def day1pt1(data):
 
-	D = [int(i) for i in open('input.txt', 'r').read().splitlines()]
-	return sum([D[i-1] < D[i] for i in range(1, len(D))])
+	return sum([data[i-1] < data[i] for i in range(1, len(data))])
 
 	
-def day1pt2():
+def day1pt2(data):
 
-	d = [int(i) for i in open('input.txt', 'r').read().splitlines()]
-	D = [d[i] + d[i+1] + d[i+2] for i in range(len(d) - 2)]
+	D = [data[i] + data[i+1] + data[i+2] for i in range(len(data) - 2)]
 	return sum([D[i-1] < D[i] for i in range(1, len(D))])
 
 
-print(day1pt1())
-print(day1pt2())
+with open('input.txt', 'r') as f:
+	report = [int(i) for i in f.read().splitlines()]
+
+print(day1pt1(report))
+print(day1pt2(report))

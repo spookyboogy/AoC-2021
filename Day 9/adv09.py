@@ -45,19 +45,15 @@ def day9pt1(mapa):
 def day9pt2(mapa):
 	
 	def neighbor_check(p, basin):
-		#print('\nchecking point: {}, basin = {}'.format(p, basin))
 		directions = [[-1,0], [1,0], [0,-1], [0,1]]
 		val = mapa[p[0]][p[1]]
 		for d in directions:
 			try:
 				nbor = (p[0]+d[0], p[1]+d[1])
-				#print('test point = {}'.format(nbor))
-				if nbor[0] < 0 or nbor[1] < 0 or nbor in basin:
-					#print('skipping'.format(nbor))
+				if nbor in basin or nbor[0] < 0 or nbor[1] < 0:
 					continue
 				nbor_val = mapa[nbor[0]][nbor[1]]
 				if nbor_val > val and nbor_val != 9:
-					#print('adding {} to basin'.format(nbor))
 					basin += [nbor]
 					basin += neighbor_check(nbor, basin)
 			except IndexError:
@@ -72,8 +68,6 @@ def day9pt2(mapa):
 	return basin_lens[0] * basin_lens[1] * basin_lens[2]
 
 	
-
-
 with open('input.txt', 'r') as f:
 	f = f.read().splitlines()
 	mapa = [[int(i) for i in j] for j in f]

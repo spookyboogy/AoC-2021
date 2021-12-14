@@ -11,7 +11,7 @@ def day11pt1(takos, steps=100, verbose=True, refresh=True):
 	"""So much tako fun"""
 
 	def print_takos(takos, step, flashed=None, 
-					width=1, pause=.5, refresh=True):
+					width=1, pause=.25, refresh=True):
 		
 		if not verbose: return	
 		def cls():
@@ -87,5 +87,5 @@ with open('easyinput.txt', 'r') as f:
 	takos = [[int(i) for i in j] for j in f]
 	tako_copy = [[int(i) for i in j] for j in f]
 
-print(day11pt1(takos)[0])
+print('\n{}'.format(day11pt1(takos)[0]))
 print(day11pt2(tako_copy))

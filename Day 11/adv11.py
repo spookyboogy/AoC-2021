@@ -1,26 +1,37 @@
-import colorama as cr
-cr.init(autoreset=True)
+import os, time
+try:
+	import colorama as cr
+	cr.init(autoreset=True)
+	colorful = True
+except:
+	colorful = False
 
 
-def day11pt1(takos, verbose=True):
+def day11pt1(takos, steps=100, verbose=True, refresh=True):
 	"""So much tako fun"""
 
-	def print_takos(takos, step, flashed=None, width=1):
+	def print_takos(takos, step, flashed=None, 
+					width=1, pause=.5, refresh=True):
 		
-		if not verbose: return
+		if not verbose: return	
+		def cls():
+			os.system('cls' if os.name=='nt' else 'clear')
+		
 		print('\ntakos {}:'.format(step))
 		for j in range(len(takos)):
 			for i in range(len(takos[j])):
 				tako = takos[j][i]
-				if flashed and (j, i) in flashed:
-					#print('\033[;1m'+'{0:<1}'.format(tako), end = '')
-					#spent 5 hrs trying to figure out how to get ANSI to work
+				if colorful and flashed and (j, i) in flashed:
 					print(cr.Fore.GREEN + 
-						'{0:{width}}'.format(tako,width=width), end = '')
+						'{0:{width}}'.format(tako,width=width), end='')
 				else:
-					print('{0:{width}}'.format(tako,width=width), end = '')
+					print('{0:{width}}'.format(tako,width=width), end='')
 			print()
-	
+		if refresh:
+			time.sleep(pause)
+			if step != steps:
+				cls()
+
 	def flash(tako, flashed):
 		
 		y, x = tako[0], tako[1]
@@ -43,10 +54,8 @@ def day11pt1(takos, verbose=True):
 				continue
 		return flashed
 
-	flashes = 0
-	hnnnnng = 0
-	step, steps = 0, 100
-	print_takos(takos, step)
+	step, flashes, hnnnnng = 0, 0, 0
+	print_takos(takos, step, refresh=refresh)
 	while step < steps:
 		flashed = []
 		for j in range(len(takos)):
@@ -60,21 +69,23 @@ def day11pt1(takos, verbose=True):
 			takos[tako[0]][tako[1]] = 0
 		step += 1
 		flashes += len(flashed)
-		print_takos(takos, step, flashed)
+		print_takos(takos, step, flashed, refresh=refresh)
 		if len(flashed) == len(takos) * len(takos[0]):
-			hnnnng = step
+			hnnnnng = step
 			break
 	return [flashes, hnnnnng]
 
 
 def day11pt2(takos):
 	
-	return day11pt1(takos,verbose=False)[1]
+	max_steps = ((len(takos) * len(takos[0])) ** 2) // 10
+	return day11pt1(takos, steps=max_steps, verbose=False)[1]
 
 
 with open('easyinput.txt', 'r') as f:
 	f = f.read().splitlines()
 	takos = [[int(i) for i in j] for j in f]
+	tako_copy = [[int(i) for i in j] for j in f]
 
 print(day11pt1(takos)[0])
-print(day11pt2(takos))
+print(day11pt2(tako_copy))

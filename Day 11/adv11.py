@@ -36,7 +36,7 @@ def day11pt1(takos, verbose=True):
 					continue
 				if takos[nbor[0]][nbor[1]] >= 9:
 					flashed += [nbor]
-					flash(nbor, flashed)
+					flashed = flash(nbor, flashed)
 				else:
 					takos[nbor[0]][nbor[1]] += 1
 			except IndexError:
@@ -55,7 +55,7 @@ def day11pt1(takos, verbose=True):
 				if takos[j][i] > 9:
 					tako = (j, i) 
 					flashed += [tako]
-					flash(tako, flashed)
+					flashed = flash(tako, flashed)
 		for tako in flashed:
 			takos[tako[0]][tako[1]] = 0
 		step += 1
@@ -72,7 +72,7 @@ def day11pt2(takos):
 	return day11pt1(takos,verbose=False)[1]
 
 
-with open('input.txt', 'r') as f:
+with open('easyinput.txt', 'r') as f:
 	f = f.read().splitlines()
 	takos = [[int(i) for i in j] for j in f]
 

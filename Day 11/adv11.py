@@ -1,7 +1,9 @@
 import colorama as cr
 cr.init(autoreset=True)
 
+
 def day11pt1(takos, verbose=True):
+	"""So much tako fun"""
 
 	def print_takos(takos, step, flashed=None, width=1):
 		
@@ -62,7 +64,6 @@ def day11pt1(takos, verbose=True):
 		if len(flashed) == len(takos) * len(takos[0]):
 			hnnnng = step
 			break
-
 	return [flashes, hnnnnng]
 
 
